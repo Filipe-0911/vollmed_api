@@ -1,7 +1,7 @@
 package med.voll.api.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.paciente.*;
+import med.voll.api.domain.paciente.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +33,9 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DadosDetalhamentoPacienteDTO> buscaPaciente(@PathVariable Long id) {
-        Optional<Paciente> pacienteBuscado = repository.findById(id);
-        DadosDetalhamentoPacienteDTO paciente = pacienteBuscado.map(DadosDetalhamentoPacienteDTO::new).orElse(null);
-        return ResponseEntity.ok(paciente);
+    public ResponseEntity<DadosDetalhamentoPacienteDTO> detalhar(@PathVariable Long id) {
+        var paciente = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DadosDetalhamentoPacienteDTO(paciente));
     }
 
     @GetMapping
