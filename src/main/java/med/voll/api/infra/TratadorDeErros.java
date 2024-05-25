@@ -19,12 +19,12 @@ public class TratadorDeErros {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity tratarErro404() {
+    public ResponseEntity<DadosErroValidacaoDTO> tratarErro404() {
         return ResponseEntity.notFound().build();
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity tratarErro400(MethodArgumentNotValidException ex) {
+    public ResponseEntity<List<DadosErroValidacaoDTO>> tratarErro400(MethodArgumentNotValidException ex) {
         List<FieldError> erros = ex.getFieldErrors();
 
         return ResponseEntity.badRequest().body(erros.stream().map(DadosErroValidacaoDTO::new).toList());

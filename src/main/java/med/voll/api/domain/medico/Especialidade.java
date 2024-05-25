@@ -22,6 +22,7 @@ public enum Especialidade {
                 return especialidade;
             }
         }
-        throw new IllegalArgumentException("Nenhuma especialidade encontrada para a string fornecida: " + especialidadeRecebida);
+        throw new IllegalArgumentException(
+                "Nenhuma especialidade encontrada para a string fornecida: " + especialidadeRecebida);
     }
 }
