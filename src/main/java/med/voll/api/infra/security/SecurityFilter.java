@@ -25,12 +25,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String path = request.getRequestURI();
-        System.out.println("Intercepted path: " + path);
-        if ("/login".equals(path)) {
-            filterChain.doFilter(request, response);
-            return;
-        }
+
         String tokenJWT = recuperarToken(request);
         if(tokenJWT != null) {
             String subject = tokenService.getSubject(tokenJWT);
