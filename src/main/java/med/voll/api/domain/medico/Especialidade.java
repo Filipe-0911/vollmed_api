@@ -16,6 +16,7 @@ public enum Especialidade {
         this.especialidadeDefinida = especialidadeRecebida;
     }
 
+    @SuppressWarnings("unused")
     private Especialidade fromString(String especialidadeRecebida) {
         for (Especialidade especialidade : Especialidade.values()) {
             if (especialidade.especialidadeDefinida.equalsIgnoreCase(especialidadeRecebida)) {
