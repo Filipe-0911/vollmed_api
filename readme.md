@@ -2,6 +2,13 @@
 
 Esta é a documentação da API Rest da aplicação Voll.med. A API contém funcionalidades de CRUD de médicos e pacientes, além de agendamento e cancelamento de consultas.
 
+# IMPORTANTE!
+Defina variáveis de ambiente com os dados de acesso ao seu banco de dados, no caso, utilizei MySQL.
+- **DB_HOST_PORT** = host do banco;
+- **DB_USERNAME** = usuario do banco;
+- **DB_PASSWORD** = senha do banco;
+- **JWT_SECRET** = segredo para desencriptar o Token JWT;
+
 ## Contato
 
 Para mais informações, entre em contato com Dev Filipe via email: fbianchi.andrade@gmail.com.
@@ -110,10 +117,3 @@ A API está hospedada em `http://localhost:8080`.
 - **Login**: `/login` - Autenticação do usuário.
 - **Cadastro de Usuário**: `/addUser` - Cadastro de novo usuário.
 - **Olá Mundo**: `/hello` - Retorna uma mensagem de saudação.
-
-# IMPORTANTE!
-Defina variáveis de ambiente com os dados de acesso ao seu banco de dados, no caso, utilizei MySQL.
-- **DB_HOST_PORT** = host do banco;
-- **DB_USERNAME** = usuario do banco;
-- **DB_PASSWORD** = senha do banco;
-- **JWT_SECRET** = segredo para desencriptar o Token JWT;
