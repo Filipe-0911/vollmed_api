@@ -1,5 +1,7 @@
 package med.voll.api.domain.medico;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum Especialidade {
     ORTOPEDIA("ortopedia"),
     CARDIOLOGIA("cardiologia"),
@@ -16,7 +18,7 @@ public enum Especialidade {
         this.especialidadeDefinida = especialidadeRecebida;
     }
 
-    @SuppressWarnings("unused")
+    @JsonCreator
     private Especialidade fromString(String especialidadeRecebida) {
         for (Especialidade especialidade : Especialidade.values()) {
             if (especialidade.especialidadeDefinida.equalsIgnoreCase(especialidadeRecebida)) {
@@ -26,4 +28,6 @@ public enum Especialidade {
         throw new IllegalArgumentException(
                 "Nenhuma especialidade encontrada para a string fornecida: " + especialidadeRecebida);
     }
+
+
 }
