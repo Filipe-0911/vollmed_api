@@ -28,6 +28,7 @@ public class AutenticacaoController {
         try {
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
             Authentication authentication = manager.authenticate(authenticationToken);
+
             String tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
 
             return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
