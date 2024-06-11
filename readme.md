@@ -3,6 +3,9 @@
 Esta é a documentação da API Rest da aplicação Voll.med. A API contém funcionalidades de CRUD de médicos e pacientes, além de agendamento e cancelamento de consultas.
 Utilizei o Swagger para geração de Documentação com base na OpenAPI e utilizei os módulos de teste do próprio Spring para fazer testes unitários.
 
+### Testes
+Para testes utilizei os módulos do próprio Spring Boot e criei Mocks com Mockito.
+
 # IMPORTANTE!
 Defina variáveis de ambiente com os dados de acesso ao seu banco de dados, no caso, utilizei MySQL.
 - **DB_HOST_PORT** = host do banco;
