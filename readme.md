@@ -1,6 +1,7 @@
 # Voll.med API
 
 Esta é a documentação da API Rest da aplicação Voll.med. A API contém funcionalidades de CRUD de médicos e pacientes, além de agendamento e cancelamento de consultas.
+Utilizei o Swagger para geração de Documentação com base na OpenAPI e utilizei os módulos de teste do próprio Spring para fazer testes unitários.
 
 # IMPORTANTE!
 Defina variáveis de ambiente com os dados de acesso ao seu banco de dados, no caso, utilizei MySQL.
@@ -11,109 +12,192 @@ Defina variáveis de ambiente com os dados de acesso ao seu banco de dados, no c
 
 ## Contato
 
-Para mais informações, entre em contato com Dev Filipe via email: fbianchi.andrade@gmail.com.
+**Dev Filipe**  
+- Email: fbianchi.andrade@gmail.com
+
+## Licença
+
+- [Apache 2.0](http://voll.med/api/licenca)
+
+## Servidores
+
+- URL: [http://localhost:8080](http://localhost:8080)
+- Descrição: Generated server url
 
 ## Endpoints
-
-A API está hospedada em `http://localhost:8080`.
 
 ### Pacientes
 
 #### Detalhar Paciente
 
-- **Descrição**: Retorna detalhes de um paciente específico.
-- **Método**: GET
-- **URL**: `/pacientes/{id}`
-- **Parâmetros**:
-    - `id` (path): ID do paciente a ser detalhado (integer)
-- **Resposta**: Retorna os detalhes do paciente.
-- **Autenticação**: Token JWT
+- Método: GET
+- Path: `/pacientes/{id}`
+- Parâmetros:
+  - id (path) - **integer(int64)** - ID do paciente
+- Resposta:
+  - 200: OK
+    - Schema: [DadosDetalhamentoPacienteDTO](#dadosdetalhamentopacientedto)
 
 #### Alterar Paciente
 
-- **Descrição**: Altera informações de um paciente existente.
-- **Método**: PUT
-- **URL**: `/pacientes/{id}`
-- **Parâmetros**:
-    - `id` (path): ID do paciente a ser alterado (integer)
-- **Corpo da Requisição**: JSON contendo os dados atualizados do paciente.
-- **Resposta**: Retorna os detalhes do paciente após a alteração.
-- **Autenticação**: Token JWT
+- Método: PUT
+- Path: `/pacientes/{id}`
+- Parâmetros:
+  - id (path) - **integer(int64)** - ID do paciente
+- Corpo da Requisição:
+  - application/json:
+    - Schema: [DadosAtualizacaoPacienteDTO](#dadosatualizacaopacientedto)
+- Resposta:
+  - 200: OK
+    - Schema: [DadosDetalhamentoPacienteDTO](#dadosdetalhamentopacientedto)
 
 #### Deletar Paciente
 
-- **Descrição**: Remove um paciente existente.
-- **Método**: DELETE
-- **URL**: `/pacientes/{id}`
-- **Parâmetros**:
-    - `id` (path): ID do paciente a ser deletado (integer)
-- **Resposta**: Confirmação da remoção do paciente.
-- **Autenticação**: Token JWT
+- Método: DELETE
+- Path: `/pacientes/{id}`
+- Parâmetros:
+  - id (path) - **integer(int64)** - ID do paciente
+- Resposta:
+  - 200: OK
+
+#### Listar Todos os Pacientes
+
+- Método: GET
+- Path: `/pacientes`
+- Parâmetros:
+  - pageable (query) - **Pageable**
+- Resposta:
+  - 200: OK
+    - Schema: [PageDadosListagemPacienteDTO](#pagedadoslistagempacientedto)
+
+#### Cadastrar Paciente
+
+- Método: POST
+- Path: `/pacientes`
+- Corpo da Requisição:
+  - application/json:
+    - Schema: [DadosCadastroPacienteDTO](#dadoscadastropacientedto)
+- Resposta:
+  - 200: OK
+    - Schema: [DadosDetalhamentoPacienteDTO](#dadosdetalhamentopacientedto)
 
 ### Médicos
 
 #### Buscar Médico
 
-- **Descrição**: Retorna detalhes de um médico específico.
-- **Método**: GET
-- **URL**: `/medicos/{id}`
-- **Parâmetros**:
-    - `id` (path): ID do médico a ser buscado (integer)
-- **Resposta**: Retorna os detalhes do médico.
-- **Autenticação**: Token JWT
+- Método: GET
+- Path: `/medicos/{id}`
+- Parâmetros:
+  - id (path) - **integer(int64)** - ID do médico
+- Resposta:
+  - 200: OK
+    - Schema: [DadosDetalhamentoMedicoDTO](#dadosdetalhamentomedicodto)
 
 #### Alterar Médico
 
-- **Descrição**: Altera informações de um médico existente.
-- **Método**: PUT
-- **URL**: `/medicos/{id}`
-- **Parâmetros**:
-    - `id` (path): ID do médico a ser alterado (integer)
-- **Corpo da Requisição**: JSON contendo os dados atualizados do médico.
-- **Resposta**: Retorna os detalhes do médico após a alteração.
-- **Autenticação**: Token JWT
+- Método: PUT
+- Path: `/medicos/{id}`
+- Parâmetros:
+  - id (path) - **integer(int64)** - ID do médico
+- Corpo da Requisição:
+  - application/json:
+    - Schema: [DadosAtualizacaoMedicoDTO](#dadosatualizacaomedicodto)
+- Resposta:
+  - 200: OK
+    - Schema: [DadosDetalhamentoMedicoDTO](#dadosdetalhamentomedicodto)
 
 #### Deletar Médico
 
-- **Descrição**: Remove um médico existente.
-- **Método**: DELETE
-- **URL**: `/medicos/{id}`
-- **Parâmetros**:
-    - `id` (path): ID do médico a ser deletado (integer)
-- **Resposta**: Confirmação da remoção do médico.
-- **Autenticação**: Token JWT
+- Método: DELETE
+- Path: `/medicos/{id}`
+- Parâmetros:
+  - id (path) - **integer(int64)** - ID do médico
+- Resposta:
+  - 200: OK
+
+#### Listar Todos os Médicos
+
+- Método: GET
+- Path: `/medicos`
+- Parâmetros:
+  - pageable (query) - **Pageable**
+- Resposta:
+  - 200: OK
+    - Schema: [PageDadosListagemMedicoDTO](#pagedadoslistagemmedicodto)
+
+#### Cadastrar Médico
+
+- Método: POST
+- Path: `/medicos`
+- Corpo da Requisição:
+  - application/json:
+    - Schema: [DadosCadastroMedicoDTO](#dadoscadastromedicodto)
+- Resposta:
+  - 200: OK
+    - Schema: [DadosDetalhamentoMedicoDTO](#dadosdetalhamentomedicodto)
+
+### Autenticação
+
+#### Efetuar Login
+
+- Método: POST
+- Path: `/login`
+- Corpo da Requisição:
+  - application/json:
+    - Schema: [DadosAutenticacao](#dadosautenticacao)
+- Resposta:
+  - 200: OK
 
 ### Consultas
 
-#### Listar Consultas Não Canceladas
+#### Listar Todas as Consultas Não Canceladas
 
-- **Descrição**: Retorna a lista de todas as consultas que não foram canceladas.
-- **Método**: GET
-- **URL**: `/consultas`
-- **Parâmetros**: Paginação
-- **Resposta**: Retorna a lista de consultas não canceladas.
-- **Autenticação**: Token JWT
+- Método: GET
+- Path: `/consultas`
+- Parâmetros:
+  - pageable (query) - **Pageable**
+- Resposta:
+  - 200: OK
+    - Schema: [PageDadosConsultaListagem](#pagedadosconsultalistagem)
 
 #### Agendar Consulta
 
-- **Descrição**: Agenda uma nova consulta.
-- **Método**: POST
-- **URL**: `/consultas`
-- **Corpo da Requisição**: JSON contendo os dados para agendamento da consulta.
-- **Resposta**: Retorna os detalhes da consulta agendada.
-- **Autenticação**: Token JWT
+- Método: POST
+- Path: `/consultas`
+- Corpo da Requisição:
+  - application/json:
+    - Schema: [DadosAgendamentoConsulta](#dadosagendamentoconsulta)
+- Resposta:
+  - 200: OK
+    - Schema: [DadosDetalhamentoConsulta](#dadosdetalhamentoconsulta)
 
 #### Cancelar Consulta
 
-- **Descrição**: Cancela uma consulta existente.
-- **Método**: DELETE
-- **URL**: `/consultas`
-- **Corpo da Requisição**: JSON contendo o ID da consulta e o motivo do cancelamento.
-- **Resposta**: Confirmação do cancelamento da consulta.
-- **Autenticação**: Token JWT
+- Método: DELETE
+- Path: `/consultas`
+- Corpo da Requisição:
+  - application/json:
+    - Schema: [DadosCancelamentoConsulta](#dadoscancelamentoconsulta)
+- Resposta:
+  - 200: OK
 
-### Outros Endpoints
+#### Cadastrar Usuário
 
-- **Login**: `/login` - Autenticação do usuário.
-- **Cadastro de Usuário**: `/addUser` - Cadastro de novo usuário.
-- **Olá Mundo**: `/hello` - Retorna uma mensagem de saudação.
+- Método: POST
+- Path: `/addUser`
+- Corpo da Requisição:
+  - application/json:
+    - Schema: [DadosCadastroUsuarioDTO](#dadoscadastrousuariodto)
+- Resposta:
+  - 200: OK
+    - Schema: [UsuarioListagemDTO](#usuariolistagemdto)
+
+### Hello
+
+#### Olá Mundo
+
+- Método: GET
+- Path: `/hello`
+- Resposta:
+  - 200: OK
+    - Schema: string
